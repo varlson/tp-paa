@@ -1,0 +1,5 @@
+# Ignorar todos os arquivos .o em qualquer subdiretório de src
+src/**/*.o
+
+# Ignorar todos os diretórios __pycache__ em qualquer subdiretório de python
+python/**/__pycache__/
