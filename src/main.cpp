@@ -4,35 +4,28 @@
 
 
 
- int main(){
-
-//knapsackBacktracking
-    int val[] = {60, 100, 120};
-    int wt[] = {10, 20, 30};
+int main() {
+    int n = 6;
     int W = 50;
-    int n = sizeof(val) / sizeof(val[0]);
 
-    int result = knapsackBacktracking(W, wt, val, n, n);
-    printf("O valor máximo que pode ser colocado na mochila é %d\n\n", result);
+    int val[] = {70, 120, 140, 55,80,150};
+    int wt[] = {20, 30, 40, 50,60,70};
+
+    // TESTE PARA BRANCH AND ABOUND
    
+    qsort(val, n, sizeof(int), compare);
+    int result = knapsackBranchAndBound(n, W, val, wt, 0, 0, 0);
+    printf("O valor máximo branch and bound é %d\n\n", result);
 
-    //knapsackBranchAndBound
+    // TESTE PARA BRANCH AND ABOUND
+    result = knapsackDP(W, wt, val, n);
+    printf("O valor máximo prog dinamica %d\n\n", result);
 
-    // n = 3;
-    // W = 50;
-    // Item items[] = {{60, 10, 6}, {100, 20, 5}, {120, 30, 4}};
-    // result = knapsackBranchAndBound(n, W, items);
-    // printf("O valor máximo que pode ser colocado na mochila é %d\n\n", result);
-
-    // //knapsackDP
-
-    int val2[] = {60, 100, 120};
-    int wt2[] = {10, 20, 30};
-    W = 50;
-    n = sizeof(val2) / sizeof(val2[0]);
-    
-     result = knapsackDP(W, wt2, val2, n);
-    printf("O valor máximo que pode ser colocado na mochila é %d\n\n", result);
+   
+    // TESTE PARA BRANCH AND ABOUND
+    result = knapsackBacktracking(W, wt, val, n, n);
+    printf("O valor máximo backtraking %d\n", result);
     return 0;
- }
+}
+
 
