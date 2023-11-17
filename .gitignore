@@ -3,3 +3,4 @@ src/**/*.o
 
 # Ignorar todos os diretórios __pycache__ em qualquer subdiretório de python
 python/**/__pycache__/
+toutput/

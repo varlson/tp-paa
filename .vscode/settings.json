@@ -1,6 +1,8 @@
 {
-    "files.associations": {
-        "random": "cpp",
-        "limits": "cpp"
-    }
+  "files.associations": {
+    "random": "cpp",
+    "limits": "cpp",
+    "chrono": "cpp",
+    "fstream": "cpp"
+  }
 }
