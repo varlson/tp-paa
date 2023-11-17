@@ -9,6 +9,7 @@
 #include <ctime>
 #include <chrono>
 #include "lib.hpp"
+#define MAX 5000000
 
 using namespace std;
 using namespace chrono;
@@ -19,7 +20,15 @@ int main() {
     // int capacidadeFixa = 100;
     int capacidade;
     cout << "Experimento 1" << endl;
-    for (int n = 100; n <= 5000; n *= 2) {
+
+    ofstream dinamyc("results/n_increasing/dinamyc.txt"); 
+    ofstream backtraking("results/n_increasing/backtraking.txt"); 
+    ofstream branchAndAbound("results/n_increasing/branchAndAbound.txt"); 
+
+    for (int n = 100; n <= MAX; n *= 2) {
+        
+        cout << "Experimento - 1 - Instance " << n << endl;
+
 
         // GERANDO DADOS ALEATOORIOS
 
@@ -32,17 +41,74 @@ int main() {
         // EXECUTANDO ALGORITMO BRANCH AND BOUND
 
 
-        // TESTES
         randomNItemGenerator(n);
-        itens = fileReader("output/instance_"+to_string(n)+"/file_1.txt", &capacidade);
-        dinamicaDriver(itens, capacidade);
-        backtrakingDriver(itens, capacidade);
-        branchAndBoundDriver(itens, capacidade);
+        vector<Results> dinamicResults, backtrakingResults, branchAndBoundResults;
 
-        cout << "-----------------------------------------\n";
+        for(int i=0; i<20; i++){
+            itens = fileReader("output/n_increasing/instance_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
+            dinamicResults.push_back(dinamicaDriver(itens, capacidade));
+            backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
+            branchAndBoundResults.push_back(branchAndBoundDriver(itens, capacidade));
+        }
+
+
+        saveResults(dinamicResults, dinamyc, n);
+        saveResults(backtrakingResults, backtraking, n);
+        saveResults(branchAndBoundResults, branchAndAbound, n);
+
     }
     
+
+    dinamyc.close();
+    backtraking.close();
+    branchAndAbound.close();
+
+
+    cout << "Experimento 2" << endl;
+
+    dinamyc.open("results/w_increasing/dinamyc.txt"); 
+    backtraking.open("results/w_increasing/backtraking.txt"); 
+    branchAndAbound.open("results/w_increasing/branchAndAbound.txt"); 
+
+    for (int n = 100; n <= MAX; n *= 2) {
+        
+        cout << "Experimento - 2 - Instance " << n << endl;
+
+
+        // GERANDO DADOS ALEATOORIOS
+
+        // LENDO DADAOS DE ARQUIVO
+        
+        // EXECUTANDO ALGORITMO DINAMICO
+
+        // EXECUTANDO ALGORITMO BACKTRAKING
+
+        // EXECUTANDO ALGORITMO BRANCH AND BOUND
+
+
+        randomWeightGenerator(n);
+        vector<Results> dinamicResults, backtrakingResults, branchAndBoundResults;
+
+        for(int i=0; i<20; i++){
+            itens = fileReader("output/w_increasing/instance_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
+            dinamicResults.push_back(dinamicaDriver(itens, capacidade));
+            backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
+            branchAndBoundResults.push_back(branchAndBoundDriver(itens, capacidade));
+        }
+
+
+        saveResults(dinamicResults, dinamyc, n);
+        saveResults(backtrakingResults, backtraking, n);
+        saveResults(branchAndBoundResults, branchAndAbound, n);
+
+    }
     
+
+    dinamyc.close();
+    backtraking.close();
+    branchAndAbound.close();
+
+
 
     return 0;
 }

@@ -31,6 +31,10 @@ struct Item {
     int valor;
 };
 
+struct Results{
+    int instance;
+    int duration;
+};
 
 double calculaBound(const vector<Item>& itens, int capacidade, int nivel, int peso, int valor);
 int mochilaBacktracking(vector<Item>& itens, int capacidade);
@@ -41,10 +45,12 @@ int mochilaBranchAndBound(vector<Item>& itens, int capacidade);
 
 // nova versao
 int mochilaBacktraking(std::vector<Item>& itens, int capacidade);
-void backtrakingDriver (std::vector<Item>& itens, int capacidade);
-void branchAndBoundDriver(vector<Item>& itens, int capacidade);
-void dinamicaDriver(vector<Item>& itens, int capacidade);
+Results backtrakingDriver (std::vector<Item>& itens, int capacidade);
+Results branchAndBoundDriver(vector<Item>& itens, int capacidade);
+Results dinamicaDriver(vector<Item>& itens, int capacidade);
 void randomNItemGenerator(int n);
 void randomWeightGenerator(int w);
 vector<Item> fileReader (string fileName, int * capacidade);
+bool creteFolder(string filePath);
+void saveResults(std::vector<Results> &res, ofstream& arquivo, int instanceSize);
 #endif

@@ -33,7 +33,7 @@ int mochilaBacktraking(std::vector<Item>& itens, int capacidade) {
 
 
 
-void backtrakingDriver (std::vector<Item>& itens, int capacidade){
+Results backtrakingDriver (std::vector<Item>& itens, int capacidade){
         
         auto start = high_resolution_clock::now();
         int resultadoPD = mochilaBacktraking(itens, capacidade);
@@ -43,7 +43,12 @@ void backtrakingDriver (std::vector<Item>& itens, int capacidade){
         // SAVE DURATION TIME
 
 
-    cout << "PROG - BACKTRAKING - DURATION: " << duration.count() << " SIZE: "<< resultadoPD<< endl;
+        Results res;
+        res.duration = duration.count();
+        res.instance = capacidade;
 
+    // cout << "PROG - BACKTRAKING - DURATION: " << duration.count() << " SIZE: "<< resultadoPD<< endl;
+
+    return res;
 }
 

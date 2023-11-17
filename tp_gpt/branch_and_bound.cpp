@@ -76,13 +76,16 @@ int mochilaBranchAndBound(vector<Item>& itens, int capacidade) {
 
 
 
-void branchAndBoundDriver(vector<Item>& itens, int capacidade){
+Results branchAndBoundDriver(vector<Item>& itens, int capacidade){
     auto start = high_resolution_clock::now();
     int resultadoPD = mochilaBranchAndBound(itens, capacidade);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start);
-    cout << "PROG - BRANCH AND BOUND - DURATION: "<< duration.count() << " - SIZE: "<< resultadoPD<< endl;
+    // cout << "PROG - BRANCH AND BOUND - DURATION: "<< duration.count() << " - SIZE: "<< resultadoPD<< endl;
 
+    Results res;
+    res.duration = duration.count();
+    res.instance = capacidade;
+    return res;
 
-    //SAVE DURATION
 }

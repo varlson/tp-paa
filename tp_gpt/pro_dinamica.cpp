@@ -29,15 +29,18 @@ int mochilaDinamica(vector<Item>& itens, int capacidade) {
 
 
 
-void dinamicaDriver(vector<Item>& itens, int capacidade){
+Results dinamicaDriver(vector<Item>& itens, int capacidade){
     
     auto start = high_resolution_clock::now();
     int resultadoPD = mochilaDinamica(itens, capacidade);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start);
 
-    cout << "PROG - DINAMICA - DURATION: " << duration.count() << " SIZE: "<< resultadoPD<< endl;
+    // cout << "PROG - DINAMICA - DURATION: " << duration.count() << " SIZE: "<< resultadoPD<< endl;
 
-    //SAVE DURATION
+    Results res;
+    res.duration = duration.count();
+    res.instance = capacidade;
+    return res;
 
 }
