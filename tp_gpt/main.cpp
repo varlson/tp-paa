@@ -90,13 +90,19 @@ int main() {
         vector<Results> dinamicResults, backtrakingResults, branchAndBoundResults;
 
         for(int i=0; i<20; i++){
-            itens = fileReader("output/w_increasing/instance_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
+            itens = fileReader("output/w_increasing/weight_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
             dinamicResults.push_back(dinamicaDriver(itens, capacidade));
             backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
             branchAndBoundResults.push_back(branchAndBoundDriver(itens, capacidade));
+
+
+            // cout<<"Size of "<< itens.size()<<endl;
+
+            // for(int j=0; j<20; j++){
+            //     cout << itens[j].peso << itens[j].valor << "\n";
+            //  }
+
         }
-
-
         saveResults(dinamicResults, dinamyc, n);
         saveResults(backtrakingResults, backtraking, n);
         saveResults(branchAndBoundResults, branchAndAbound, n);
@@ -107,8 +113,6 @@ int main() {
     dinamyc.close();
     backtraking.close();
     branchAndAbound.close();
-
-
 
     return 0;
 }
