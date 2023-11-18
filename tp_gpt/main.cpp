@@ -1,7 +1,3 @@
-// main.cpp
-
-// BACKTRAKING COMENTADO, NÃO TA RODANDO
-
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -9,7 +5,7 @@
 #include <ctime>
 #include <chrono>
 #include "lib.hpp"
-#define MAX 5000000
+#define MAX 40
 
 using namespace std;
 using namespace chrono;
@@ -25,9 +21,9 @@ int main() {
     ofstream backtraking("results/n_increasing/backtraking.txt"); 
     ofstream branchAndAbound("results/n_increasing/branchAndAbound.txt"); 
 
-    for (int n = 100; n <= MAX; n *= 2) {
+    for (int n = 10; n <= MAX; n += 10) {
         
-        cout << "Experimento - 1 - Instance " << n << endl;
+        cout << "\n\n\nExperimento - 1 - Instance " << n << "\n\n\n";
 
 
         // GERANDO DADOS ALEATOORIOS
@@ -40,34 +36,78 @@ int main() {
 
         // EXECUTANDO ALGORITMO BRANCH AND BOUND
 
-
         randomNItemGenerator(n);
         vector<Results> dinamicResults, backtrakingResults, branchAndBoundResults;
+        // vector<Results> dinamicResults;
 
         for(int i=0; i<20; i++){
             itens = fileReader("output/n_increasing/instance_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
             dinamicResults.push_back(dinamicaDriver(itens, capacidade));
-            backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
+            //backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
             branchAndBoundResults.push_back(branchAndBoundDriver(itens, capacidade));
+            backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
         }
 
 
         saveResults(dinamicResults, dinamyc, n);
         saveResults(backtrakingResults, backtraking, n);
         saveResults(branchAndBoundResults, branchAndAbound, n);
-
     }
+
+    // for (int n = 100; n <= MAX; n *= 2) {
+        
+    //     cout << "Experimento - 1 - Instance " << n << endl;
+
+
+    //     // GERANDO DADOS ALEATOORIOS
+
+    //     // LENDO DADAOS DE ARQUIVO
+        
+    //     // EXECUTANDO ALGORITMO BRANCH AND BOUND
+
+    //     randomNItemGenerator(n);
+    //     vector<Results> branchAndBoundResults;
+
+    //     for(int i=0; i<20; i++){
+    //         itens = fileReader("output/n_increasing/instance_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
+    //         branchAndBoundResults.push_back(branchAndBoundDriver(itens, capacidade));
+    //     }
+
+    //     saveResults(branchAndBoundResults, branchAndAbound, n);
+    // }
+
+    //  for (int n = 10; n <= MAX; n *= 2) {
+        
+    //     cout << "Experimento - 1 - Instance " << n << endl;
+
+    //     // GERANDO DADOS ALEATOORIOS
+
+    //     // LENDO DADAOS DE ARQUIVO
+
+    //     // EXECUTANDO ALGORITMO BACKTRAKING
+
+    //     randomNItemGenerator(n);
+    //     vector<Results> backtrakingResults;
+
+    //     for(int i=0; i<20; i++){
+    //         itens = fileReader("output/n_increasing/instance_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
+    //         backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
+    //     }
+
+    //     saveResults(backtrakingResults, backtraking, n);
+    // }
     
 
     dinamyc.close();
     backtraking.close();
     branchAndAbound.close();
 
-
+    /**
+    
     cout << "Experimento 2" << endl;
 
     dinamyc.open("results/w_increasing/dinamyc.txt"); 
-    backtraking.open("results/w_increasing/backtraking.txt"); 
+    //backtraking.open("results/w_increasing/backtraking.txt"); 
     branchAndAbound.open("results/w_increasing/branchAndAbound.txt"); 
 
     for (int n = 100; n <= MAX; n *= 2) {
@@ -92,7 +132,7 @@ int main() {
         for(int i=0; i<20; i++){
             itens = fileReader("output/w_increasing/weight_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
             dinamicResults.push_back(dinamicaDriver(itens, capacidade));
-            backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
+            //backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
             branchAndBoundResults.push_back(branchAndBoundDriver(itens, capacidade));
 
 
@@ -104,15 +144,19 @@ int main() {
 
         }
         saveResults(dinamicResults, dinamyc, n);
-        saveResults(backtrakingResults, backtraking, n);
+        //saveResults(backtrakingResults, backtraking, n);
         saveResults(branchAndBoundResults, branchAndAbound, n);
 
     }
     
 
     dinamyc.close();
-    backtraking.close();
+    //backtraking.close();
     branchAndAbound.close();
+
+
+    */
+
 
     return 0;
 }

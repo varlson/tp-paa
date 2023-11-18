@@ -2,8 +2,6 @@
 #include <filesystem>
 namespace fs = std::filesystem;
 
-
-
 void randomNItemGenerator(int n){
 
     string folder = "output/n_increasing/instance_"+to_string(n);

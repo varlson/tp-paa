@@ -10,10 +10,8 @@
 #include <cstdlib>
 #include <ctime>
 
-
 using namespace std;
 using namespace chrono;
-
 
 struct NohBB {
     int nivel;
