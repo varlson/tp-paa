@@ -5,7 +5,7 @@
 #include <ctime>
 #include <chrono>
 #include "lib.hpp"
-#define MAX 40
+#define MAX 50
 
 using namespace std;
 using namespace chrono;
@@ -43,7 +43,6 @@ int main() {
         for(int i=0; i<20; i++){
             itens = fileReader("output/n_increasing/instance_"+to_string(n)+"/file_"+to_string(i+1)+".txt", &capacidade);
             dinamicResults.push_back(dinamicaDriver(itens, capacidade));
-            //backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
             branchAndBoundResults.push_back(branchAndBoundDriver(itens, capacidade));
             backtrakingResults.push_back(backtrakingDriver(itens, capacidade));
         }
